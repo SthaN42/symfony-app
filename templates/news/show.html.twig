@@ -5,7 +5,9 @@
 {% block content %}
     <h1 class="title">{{ news.title }}</h1>
 
-    <iframe width="400px" height="200px" src="https://www.youtube.com/embed/{{ ytUrl }}" frameborder="0"></iframe>
+    <div>
+        <iframe width="400px" height="200px" src="https://www.youtube.com/embed/{{ ytUrl }}" frameborder="0"></iframe>
+    </div>
 
     <a href="{{ path('news_index') }}">back to list</a>
 

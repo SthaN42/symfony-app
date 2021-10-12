@@ -1,9 +1,12 @@
 :root {
   --clr-orange-400: hsl(35, 91%, 61%);
   --clr-orange-600: hsl(35, 64%, 53%);
+  --clr-grey-300: hsl(0, 0%, 23%);
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -50,30 +53,44 @@ nav {
 .link {
   text-decoration: none;
   color: var(--clr-orange-400);
-  transition: all .3s ease;
+  transition: all 0.3s ease;
+  outline: none;
 }
 .clr-white {
   color: white;
 }
-.link:hover, .link:focus {
+.link:hover,
+.link:focus-visible {
   color: var(--clr-orange-600);
   text-decoration: underline;
 }
-.link.clr-white:hover, .link.clr-white:focus {
+.link.clr-white:hover,
+.link.clr-white:focus-visible {
   color: white;
 }
 
+.title-wrapper {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  justify-items: center;
+  align-items: center;
+  justify-content: center;
+}
+
 h1.title {
+  grid-column: 2;
   font-size: 2.5em;
   text-align: center;
-  margin: .75em 0;
-  color: rgb(58, 58, 58);
+  margin: 0.75em 0;
+  color: var(--clr-grey-300);
 }
 
 ul {
   display: flex;
+  align-items: center;
   flex-direction: row;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
 ul li {
   list-style: none;
@@ -84,15 +101,16 @@ ul a {
   font-size: 1.2rem;
   display: block;
   text-align: center;
-  padding: .75em 0;
+  padding: 0.75em 0;
   height: 100%;
   text-decoration: none;
   text-shadow: 0.05em 0.05em 0.25em rgba(15, 15, 15, 0.5);
   background-color: var(--clr-orange-400);
-  transition: background-color .15s ease;
+  transition: background-color 0.15s ease;
 }
 
-ul a:hover, ul a:focus {
+ul a:hover,
+ul a:focus-visible {
   background-color: var(--clr-orange-600);
   outline: none;
 }
@@ -116,4 +134,36 @@ footer {
   font-style: italic;
   background-color: #252525;
   text-align: center;
+}
+
+.news-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.news {
+  width: fit-content;
+  margin: 1rem 2rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  color: var(--clr-grey-300);
+  transition: box-shadow .3s ease;
+}
+
+.news:hover, .news:focus-visible {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 8px 6px -1px,
+  rgba(0, 0, 0, 0.06) 0px 4px 4px -1px;
+}
+
+.news-title p {
+  font-size: 1.5rem;
+  padding: 1.5em 0.75em;
+}
+
+.news a {
+  text-decoration: none;
+  display: block;
+  color: var(--clr-grey-300);
+  outline: none;
 }

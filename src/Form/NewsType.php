@@ -14,6 +14,7 @@ class NewsType extends AbstractType
         $builder
             ->add('url')
             ->add('date')
+            ->add('title')
         ;
     }
 
