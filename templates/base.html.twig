@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %} {{ titre }} {% endblock %} - NGApp</title>
+    <title>{% block title %} {{ title|default('Web page') }} {% endblock %} - NGApp</title>
     {# Run `composer require symfony/webpack-encore-bundle`
     and uncomment the following Encore helpers to start using Symfony UX #}
     {% block stylesheets %}
@@ -38,11 +38,11 @@
 
     <nav>
         <ul>
-            <li><a href="{{ path('home') }}">Home</a></li>
-            <li><a href="{{ path('news') }}">News</a></li>
-            <li><a href="{{ path('weekly') }}">Factory Of The Week</a></li>
-            <li><a href="{{ path('tutorials') }}">Tutorials</a></li>
-            <li><a href="{{ path('funny') }}">Funny Stuff</a></li>
+            <li><a href="{{ path('home') }}" class="clr-white">Home</a></li>
+            <li><a href="{{ path('news') }}" class="clr-white">News</a></li>
+            <li><a href="{{ path('weekly') }}" class="clr-white">Factory Of The Week</a></li>
+            <li><a href="{{ path('tutorials') }}" class="clr-white">Tutorials</a></li>
+            <li><a href="{{ path('funny') }}" class="clr-white">Funny Stuff</a></li>
         </ul>
     </nav>
 

@@ -1,0 +1,1 @@
+Little community website, to get into the Symfony framework.
