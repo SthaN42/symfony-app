@@ -1,0 +1,101 @@
+:root {
+  --clr-orange-400: hsl(35, 91%, 61%);
+  --clr-orange-600: hsl(35, 64%, 53%);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #eaeaea;
+  min-height: 100vh;
+  font-family: sans-serif;
+}
+header {
+  background-color: var(--clr-orange-400);
+  padding-top: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header .logo {
+  width: 33%;
+}
+
+.user {
+  margin-right: 1em;
+  color: white;
+}
+
+nav {
+  background-color: var(--clr-orange-400);
+  position: sticky;
+  top: 0;
+}
+
+.link {
+  text-decoration: none;
+  color: var(--clr-orange-400);
+  transition: all .3s ease;
+}
+.link.clr-white {
+  color: white;
+}
+.link:hover, .link:focus {
+  color: var(--clr-orange-600);
+  text-decoration: underline;
+}
+.link.clr-white:hover, .link.clr-white:focus {
+  color: white;
+}
+
+ul {
+  display: flex;
+  flex-direction: row;
+}
+ul li {
+  list-style: none;
+  width: 20%;
+}
+
+ul a {
+  font-size: 1.1rem;
+  display: block;
+  text-align: center;
+  padding: .75em 0;
+  height: 100%;
+  color: white;
+  text-decoration: none;
+  text-shadow: 0.05em 0.05em 0.25em rgba(0, 0, 0, 0.5);
+  background-color: var(--clr-orange-400);
+  transition: background-color .15s ease;
+}
+
+ul a:hover, ul a:focus {
+  background-color: var(--clr-orange-600);
+  outline: none;
+}
+
+main {
+  min-height: 75vh;
+  margin: 2em 4em;
+}
+
+footer {
+  display: grid;
+  place-items: center;
+  justify-items: stretch;
+  height: clamp(8em, 32vh, 16em);
+  background-color: #333333;
+  color: #909090;
+}
+
+.infos {
+  padding: 1em 0;
+  font-style: italic;
+  background-color: #252525;
+  text-align: center;
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {{ titre }} {% endblock %} - NGApp</title>
+    {# Run `composer require symfony/webpack-encore-bundle`
+    and uncomment the following Encore helpers to start using Symfony UX #}
+    {% block stylesheets %}
+    {#{{ encore_entry_link_tags('app') }}#}
+    <link rel="stylesheet" href="{{ asset('static/css/style.css') }}">
+    {% endblock %}
+
+    {% block javascripts %}
+    {#{{ encore_entry_script_tags('app') }}#}
+    {% endblock %}
+</head>
+
+<body>
+    <header>
+        {% block header %}
+        <img src="{{ asset('static/img/Satisfactory_logo.png') }}" alt="Logo" class="logo">
+
+        {% if app.user %}
+        <div class="user">
+            <p>{% if is_granted('ROLE_ADMIN') %} <a href="admin" class="link clr-white">Admin panel</a> | {% endif %} Welcome, {{ app.user.username }} | <a href="logout" class="link clr-white">Disconnect</a></p>
+        </div>
+        {% else %}
+        <div class="user">
+            <p><a href="login" class="link clr-white">Connect</a> | <a href="register" class="link clr-white">Create account</a></p>
+        </div>
+        {% endif %}
+
+        {% endblock header %}
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="{{ path('home') }}">Home</a></li>
+            <li><a href="{{ path('news') }}">News</a></li>
+            <li><a href="{{ path('weekly') }}">Factory Of The Week</a></li>
+            <li><a href="{{ path('tutorials') }}">Tutorials</a></li>
+            <li><a href="{{ path('funny') }}">Funny Stuff</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        {% block footer %}
+        <div class="infos">
+            <p>@Me 2021</p>
+            <p>All rights reserved.</p>
+        </div>
+        {% endblock footer %}
+    </footer>
+</body>
