@@ -17,14 +17,6 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/news", name="news")
-     */
-    public function news(): Response
-    {
-        return $this->render('news.html.twig');
-    }
-
-    /**
      * @Route("/factoryOfTheWeek", name="weekly")
      */
     public function weekly(): Response

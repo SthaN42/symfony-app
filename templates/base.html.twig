@@ -25,11 +25,11 @@
 
         {% if app.user %}
         <div class="user">
-            <p>{% if is_granted('ROLE_ADMIN') %} <a href="admin" class="link clr-white">Admin panel</a> | {% endif %} Welcome, {{ app.user.username }} | <a href="logout" class="link clr-white">Disconnect</a></p>
+            <p>{% if is_granted('ROLE_ADMIN') %} <a href="{{ path('admin') }}" class="link clr-white">Admin panel</a> | {% endif %} Welcome, {{ app.user.username }} | <a href="logout" class="link clr-white">Disconnect</a></p>
         </div>
         {% else %}
         <div class="user">
-            <p><a href="login" class="link clr-white">Connect</a> | <a href="register" class="link clr-white">Create account</a></p>
+            <p><a href="{{ path('app_login') }}" class="link clr-white">Connect</a> | <a href="{{ path('app_register') }}" class="link clr-white">Create account</a></p>
         </div>
         {% endif %}
 
@@ -39,7 +39,7 @@
     <nav>
         <ul>
             <li><a href="{{ path('home') }}" class="clr-white">Home</a></li>
-            <li><a href="{{ path('news') }}" class="clr-white">News</a></li>
+            <li><a href="{{ path('news_index') }}" class="clr-white">News</a></li>
             <li><a href="{{ path('weekly') }}" class="clr-white">Factory Of The Week</a></li>
             <li><a href="{{ path('tutorials') }}" class="clr-white">Tutorials</a></li>
             <li><a href="{{ path('funny') }}" class="clr-white">Funny Stuff</a></li>

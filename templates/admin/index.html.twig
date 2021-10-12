@@ -5,8 +5,8 @@
 {% block content %}
 <h1 class="title">{{ title }}</h1>
 <ul class="admin-panel">
-    <li><a href="user" class="clr-white">Users list</a></li>
-    <li><a href="" class="clr-white"></a></li>
+    <li><a href="{{ path('user_index') }}" class="clr-white">Users list</a></li>
+    <li><a href="{{ path('news_index') }}" class="clr-white">News List</a></li>
     <li><a href="" class="clr-white"></a></li>
     <li><a href="" class="clr-white"></a></li>
 </ul>
