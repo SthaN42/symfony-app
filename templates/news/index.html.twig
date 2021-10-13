@@ -6,7 +6,7 @@
 <div class="title-wrapper">
     <h1 class="title">Latest News</h1>
     {% if is_granted('ROLE_ADMIN') %}
-    <a href="{{ path('news_new') }}" class="link">Create new</a>
+    <a href="{{ path('news_new') }}" class="btn clr-white">Create new</a>
     {% endif %}
 </div>
 
