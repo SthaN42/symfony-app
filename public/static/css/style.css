@@ -21,7 +21,7 @@ body {
 }
 header {
   background-color: var(--clr-orange-400);
-  padding-top: 1em;
+  padding: 1em 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -39,9 +39,6 @@ header .logo {
   width: 100%;
 }
 
-.admin-panel li {
-  width: 25%;
-}
 .admin-panel li a {
   font-size: 1rem;
 }
@@ -94,6 +91,7 @@ ul {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
+
 ul li {
   list-style: none;
   width: 20%;
@@ -118,7 +116,7 @@ ul a:focus-visible {
 }
 
 main {
-  min-height: 75vh;
+  min-height: 40vh;
   margin: 1.5em 4em;
 }
 
@@ -150,17 +148,19 @@ footer {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
   color: var(--clr-grey-300);
-  transition: box-shadow .3s ease;
+  transition: box-shadow 0.3s ease;
 }
 
-.news:hover, .news:focus-visible {
+.news:hover,
+.news:focus-visible {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 8px 6px -1px,
-  rgba(0, 0, 0, 0.06) 0px 4px 4px -1px;
+    rgba(0, 0, 0, 0.06) 0px 4px 4px -1px;
 }
 
 .news-title p {
   font-size: 1.5rem;
   padding: 1.5em 0.75em;
+  text-align: center;
 }
 
 .news-content {
@@ -175,6 +175,18 @@ footer {
   outline: none;
 }
 
+main > form {
+  text-align: center;
+}
+
+main > form > * > * {
+  margin: 1em;
+}
+
+.required::after {
+  content: " *";
+}
+
 #yt-iframe-wrapper {
   width: 90%;
   aspect-ratio: 2 / 1;
@@ -182,20 +194,21 @@ footer {
 }
 
 .btn {
-  padding: .75em 1.5em;
+  padding: 0.75em 1.5em;
   text-decoration: none;
   outline: none;
   text-shadow: 0.05em 0.05em 0.25em rgba(15, 15, 15, 0.5);
   background-color: var(--clr-orange-400);
   cursor: pointer;
   border: none;
-  border-radius: .75em;
+  border-radius: 0.75em;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
-  rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-  transition: background-color .3s ease;
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  transition: background-color 0.3s ease;
 }
 
-.btn:hover, .btn:focus-visible {
+.btn:hover,
+.btn:focus-visible {
   background-color: var(--clr-orange-600);
 }
 
@@ -203,7 +216,8 @@ footer {
   background-color: var(--clr-red-600);
 }
 
-.bg-red:hover, .btn:focus-visible {
+.bg-red:hover,
+.btn:focus-visible {
   background-color: var(--clr-red-400);
 }
 
