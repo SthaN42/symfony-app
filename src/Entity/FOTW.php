@@ -2,15 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\FOTWRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Repository\FotwRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=FOTWRepository::class)
+ * @ORM\Entity(repositoryClass=FotwRepository::class)
  */
-class FOTW
+class Fotw
 {
     /**
      * @ORM\Id
@@ -20,23 +18,31 @@ class FOTW
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity=Article::class, inversedBy="fOTW", cascade={"persist", "remove"})
+     * @ORM\Column(type="string", length=255)
      */
-    private $article;
+    private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=Video::class, mappedBy="fOTW")
+     * @ORM\OneToOne(targetEntity=Article::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $video;
-
-    public function __construct()
-    {
-        $this->video = new ArrayCollection();
-    }
+    private $article;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
     }
 
     public function getArticle(): ?Article
@@ -44,39 +50,9 @@ class FOTW
         return $this->article;
     }
 
-    public function setArticle(?Article $article): self
+    public function setArticle(Article $article): self
     {
         $this->article = $article;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Video[]
-     */
-    public function getVideo(): Collection
-    {
-        return $this->video;
-    }
-
-    public function addVideo(Video $video): self
-    {
-        if (!$this->video->contains($video)) {
-            $this->video[] = $video;
-            $video->setFOTW($this);
-        }
-
-        return $this;
-    }
-
-    public function removeVideo(Video $video): self
-    {
-        if ($this->video->removeElement($video)) {
-            // set the owning side to null (unless already changed)
-            if ($video->getFOTW() === $this) {
-                $video->setFOTW(null);
-            }
-        }
 
         return $this;
     }

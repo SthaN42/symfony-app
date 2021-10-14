@@ -25,28 +25,29 @@ class Article
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="date")
      */
     private $date;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      */
     private $content;
-
-    /**
-     * @ORM\OneToOne(targetEntity=FOTW::class, mappedBy="article", cascade={"persist", "remove"})
-     */
-    private $fOTW;
 
     /**
      * @ORM\ManyToMany(targetEntity=Tag::class, mappedBy="articles")
      */
     private $tags;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Video::class, inversedBy="articles")
+     */
+    private $video;
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
+        $this->video = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -66,12 +67,12 @@ class Article
         return $this;
     }
 
-    public function getDate(): ?string
+    public function getDate(): ?\DateTimeInterface
     {
         return $this->date;
     }
 
-    public function setDate(string $date): self
+    public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
 
@@ -86,28 +87,6 @@ class Article
     public function setContent(string $content): self
     {
         $this->content = $content;
-
-        return $this;
-    }
-
-    public function getFOTW(): ?FOTW
-    {
-        return $this->fOTW;
-    }
-
-    public function setFOTW(?FOTW $fOTW): self
-    {
-        // unset the owning side of the relation if necessary
-        if ($fOTW === null && $this->fOTW !== null) {
-            $this->fOTW->setArticle(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($fOTW !== null && $fOTW->getArticle() !== $this) {
-            $fOTW->setArticle($this);
-        }
-
-        $this->fOTW = $fOTW;
 
         return $this;
     }
@@ -135,6 +114,30 @@ class Article
         if ($this->tags->removeElement($tag)) {
             $tag->removeArticle($this);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Video[]
+     */
+    public function getVideo(): Collection
+    {
+        return $this->video;
+    }
+
+    public function addVideo(Video $video): self
+    {
+        if (!$this->video->contains($video)) {
+            $this->video[] = $video;
+        }
+
+        return $this;
+    }
+
+    public function removeVideo(Video $video): self
+    {
+        $this->video->removeElement($video);
 
         return $this;
     }

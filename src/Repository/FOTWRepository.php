@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\FOTW;
+use App\Entity\Fotw;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method FOTW|null find($id, $lockMode = null, $lockVersion = null)
- * @method FOTW|null findOneBy(array $criteria, array $orderBy = null)
- * @method FOTW[]    findAll()
- * @method FOTW[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Fotw|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Fotw|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Fotw[]    findAll()
+ * @method Fotw[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class FOTWRepository extends ServiceEntityRepository
+class FotwRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, FOTW::class);
+        parent::__construct($registry, Fotw::class);
     }
 
     // /**
-    //  * @return FOTW[] Returns an array of FOTW objects
+    //  * @return Fotw[] Returns an array of Fotw objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class FOTWRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?FOTW
+    public function findOneBySomeField($value): ?Fotw
     {
         return $this->createQueryBuilder('f')
             ->andWhere('f.exampleField = :val')

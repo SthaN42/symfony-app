@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Fotw{% endblock %}
+
+{% block content %}
+    <h1 class="title">Create new Fotw</h1>
+
+    {{ include('fotw/_form.html.twig') }}
+
+    <a href="{{ path('fotw_index') }}" class="btn clr-white">back to list</a>
+{% endblock %}

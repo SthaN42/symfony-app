@@ -25,18 +25,24 @@ class Video
     private $url;
 
     /**
-     * @ORM\ManyToOne(targetEntity=FOTW::class, inversedBy="video")
+     * @ORM\Column(type="string", length=255)
      */
-    private $fOTW;
+    private $title;
 
     /**
      * @ORM\ManyToMany(targetEntity=Tag::class, mappedBy="videos")
      */
     private $tags;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Article::class, mappedBy="video")
+     */
+    private $articles;
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
+        $this->articles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -56,14 +62,14 @@ class Video
         return $this;
     }
 
-    public function getFOTW(): ?FOTW
+    public function getTitle(): ?string
     {
-        return $this->fOTW;
+        return $this->title;
     }
 
-    public function setFOTW(?FOTW $fOTW): self
+    public function setTitle(string $title): self
     {
-        $this->fOTW = $fOTW;
+        $this->title = $title;
 
         return $this;
     }
@@ -90,6 +96,33 @@ class Video
     {
         if ($this->tags->removeElement($tag)) {
             $tag->removeVideo($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Article[]
+     */
+    public function getArticles(): Collection
+    {
+        return $this->articles;
+    }
+
+    public function addArticle(Article $article): self
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
+            $article->addVideo($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticle(Article $article): self
+    {
+        if ($this->articles->removeElement($article)) {
+            $article->removeVideo($this);
         }
 
         return $this;

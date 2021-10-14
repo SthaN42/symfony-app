@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Fotw{% endblock %}
+
+{% block content %}
+    <h1 class="title">Edit Fotw</h1>
+
+    {{ include('fotw/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('fotw_index') }}">back to list</a>
+
+    {{ include('fotw/_delete_form.html.twig') }}
+{% endblock %}

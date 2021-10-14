@@ -184,7 +184,7 @@ main > form > * > * {
 }
 
 .required::after {
-  content: " *";
+  content: "* ";
 }
 
 #yt-iframe-wrapper {

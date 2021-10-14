@@ -15,28 +15,4 @@ class HomeController extends AbstractController
     {
         return $this->render('home.html.twig');
     }
-
-    /**
-     * @Route("/factoryOfTheWeek", name="weekly")
-     */
-    public function weekly(): Response
-    {
-        return $this->render('weekly.html.twig');
-    }
-
-    /**
-     * @Route("/tutorials", name="tutorials")
-     */
-    public function tutorials(): Response
-    {
-        return $this->render('tutorials.html.twig');
-    }
-
-    /**
-     * @Route("/funnyStuff", name="funny")
-     */
-    public function funny(): Response
-    {
-        return $this->render('funny.html.twig');
-    }
 }

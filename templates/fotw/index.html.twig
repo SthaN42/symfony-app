@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fotw index{% endblock %}
+
+{% block content %}
+    <h1 class="title">Fotw index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for fotw in fotws %}
+            <tr>
+                <td>{{ fotw.id }}</td>
+                <td>{{ fotw.name }}</td>
+                <td>
+                    <a href="{{ path('fotw_show', {'id': fotw.id}) }}">show</a>
+                    <a href="{{ path('fotw_edit', {'id': fotw.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('fotw_new') }}">Create new</a>
+{% endblock %}
