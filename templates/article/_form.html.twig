@@ -1,4 +1,8 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="btn clr-white">{{ button_label|default('Save') }}</button>
+    <div class="actions">
+        <a href="{{ path('tag_new') }}" class="btn clr-white">Create a tag</a>
+        <button class="btn clr-white">{{ button_label|default('Save') }}</button>
+        <a href="{{ path('video_new') }}" class="btn clr-white">Create a video</a>
+    </div>
 {{ form_end(form) }}

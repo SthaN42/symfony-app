@@ -25,19 +25,19 @@ class Tag
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Article::class, inversedBy="tags")
-     */
-    private $articles;
-
-    /**
      * @ORM\ManyToMany(targetEntity=Video::class, inversedBy="tags")
      */
     private $videos;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Article::class, inversedBy="tags")
+     */
+    private $articles;
+
     public function __construct()
     {
-        $this->articles = new ArrayCollection();
         $this->videos = new ArrayCollection();
+        $this->articles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -53,30 +53,6 @@ class Tag
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Article[]
-     */
-    public function getArticles(): Collection
-    {
-        return $this->articles;
-    }
-
-    public function addArticle(Article $article): self
-    {
-        if (!$this->articles->contains($article)) {
-            $this->articles[] = $article;
-        }
-
-        return $this;
-    }
-
-    public function removeArticle(Article $article): self
-    {
-        $this->articles->removeElement($article);
 
         return $this;
     }
@@ -101,6 +77,30 @@ class Tag
     public function removeVideo(Video $video): self
     {
         $this->videos->removeElement($video);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Article[]
+     */
+    public function getArticles(): Collection
+    {
+        return $this->articles;
+    }
+
+    public function addArticle(Article $article): self
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
+        }
+
+        return $this;
+    }
+
+    public function removeArticle(Article $article): self
+    {
+        $this->articles->removeElement($article);
 
         return $this;
     }

@@ -2,6 +2,7 @@
   --clr-orange-400: hsl(35, 91%, 61%);
   --clr-orange-600: hsl(35, 64%, 53%);
   --clr-grey-300: hsl(0, 0%, 23%);
+  --clr-grey-500: hsl(0, 0%, 40%);
   --clr-red-400: hsl(0, 53%, 49%);
   --clr-red-600: hsl(0, 100%, 64%);
 }
@@ -84,6 +85,14 @@ h1.title {
   color: var(--clr-grey-300);
 }
 
+.date {
+  grid-column: 1;
+  color: var(--clr-grey-500);
+}
+.date span {
+  font-style: italic;
+}
+
 ul {
   display: flex;
   align-items: center;
@@ -116,7 +125,7 @@ ul a:focus-visible {
 }
 
 main {
-  min-height: 40vh;
+  min-height: 36vh;
   margin: 1.5em 4em;
 }
 
@@ -179,6 +188,7 @@ main > form {
   text-align: center;
 }
 
+/* aled j'ai jamais vu ca c'est hideux mais flemme */
 main > form > * > * {
   margin: 1em;
 }
@@ -227,4 +237,12 @@ main > form > * > * {
   justify-content: space-around;
   margin: 1.5rem 2rem 0;
   font-size: 1.1rem;
+}
+
+.actions.form-actions {
+  justify-content: center;
+}
+
+article .article-content {
+  margin: 2em;
 }

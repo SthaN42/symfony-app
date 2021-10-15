@@ -2,8 +2,8 @@
 
 {% block title %}Video{% endblock %}
 
-{% block body %}
-    <h1>Video</h1>
+{% block content %}
+    <h1 class="title">Video</h1>
 
     <table class="table">
         <tbody>
@@ -22,7 +22,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('video_index') }}">back to list</a>
+    <a href="{{ path('video_index') }}" class="btn clr-white">back to list</a>
 
     <a href="{{ path('video_edit', {'id': video.id}) }}">edit</a>
 

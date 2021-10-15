@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/article")
+ * @Route("/admin/article")
  */
 class ArticleController extends AbstractController
 {
@@ -53,8 +53,15 @@ class ArticleController extends AbstractController
      */
     public function show(Article $article): Response
     {
+        $ytUrl = NULL;
+        if ($article->getVideos()[0]) {
+            $url = $article->getVideos()[0]->getUrl();
+            $ytUrl = explode('=', $url, 2);
+        }
+            
         return $this->render('article/show.html.twig', [
             'article' => $article,
+            'ytUrl' => $ytUrl[1],
         ]);
     }
 

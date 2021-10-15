@@ -35,19 +35,19 @@ class Article
     private $content;
 
     /**
+     * @ORM\ManyToMany(targetEntity=Video::class, inversedBy="articles")
+     */
+    private $videos;
+
+    /**
      * @ORM\ManyToMany(targetEntity=Tag::class, mappedBy="articles")
      */
     private $tags;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Video::class, inversedBy="articles")
-     */
-    private $video;
-
     public function __construct()
     {
+        $this->videos = new ArrayCollection();
         $this->tags = new ArrayCollection();
-        $this->video = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -92,6 +92,30 @@ class Article
     }
 
     /**
+     * @return Collection|Video[]
+     */
+    public function getVideos(): Collection
+    {
+        return $this->videos;
+    }
+
+    public function addVideo(Video $video): self
+    {
+        if (!$this->videos->contains($video)) {
+            $this->videos[] = $video;
+        }
+
+        return $this;
+    }
+
+    public function removeVideo(Video $video): self
+    {
+        $this->videos->removeElement($video);
+
+        return $this;
+    }
+
+    /**
      * @return Collection|Tag[]
      */
     public function getTags(): Collection
@@ -114,30 +138,6 @@ class Article
         if ($this->tags->removeElement($tag)) {
             $tag->removeArticle($this);
         }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Video[]
-     */
-    public function getVideo(): Collection
-    {
-        return $this->video;
-    }
-
-    public function addVideo(Video $video): self
-    {
-        if (!$this->video->contains($video)) {
-            $this->video[] = $video;
-        }
-
-        return $this;
-    }
-
-    public function removeVideo(Video $video): self
-    {
-        $this->video->removeElement($video);
 
         return $this;
     }

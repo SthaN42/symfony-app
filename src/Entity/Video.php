@@ -30,19 +30,19 @@ class Video
     private $title;
 
     /**
+     * @ORM\ManyToMany(targetEntity=Article::class, mappedBy="videos")
+     */
+    private $articles;
+
+    /**
      * @ORM\ManyToMany(targetEntity=Tag::class, mappedBy="videos")
      */
     private $tags;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Article::class, mappedBy="video")
-     */
-    private $articles;
-
     public function __construct()
     {
-        $this->tags = new ArrayCollection();
         $this->articles = new ArrayCollection();
+        $this->tags = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -75,33 +75,6 @@ class Video
     }
 
     /**
-     * @return Collection|Tag[]
-     */
-    public function getTags(): Collection
-    {
-        return $this->tags;
-    }
-
-    public function addTag(Tag $tag): self
-    {
-        if (!$this->tags->contains($tag)) {
-            $this->tags[] = $tag;
-            $tag->addVideo($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTag(Tag $tag): self
-    {
-        if ($this->tags->removeElement($tag)) {
-            $tag->removeVideo($this);
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection|Article[]
      */
     public function getArticles(): Collection
@@ -123,6 +96,33 @@ class Video
     {
         if ($this->articles->removeElement($article)) {
             $article->removeVideo($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Tag[]
+     */
+    public function getTags(): Collection
+    {
+        return $this->tags;
+    }
+
+    public function addTag(Tag $tag): self
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+            $tag->addVideo($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTag(Tag $tag): self
+    {
+        if ($this->tags->removeElement($tag)) {
+            $tag->removeVideo($this);
         }
 
         return $this;

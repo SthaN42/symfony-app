@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Fotw index{% endblock %}
+{% block title %}Tag index{% endblock %}
 
 {% block body %}
-    <h1>Fotw index</h1>
+    <h1>Tag index</h1>
 
     <table class="table">
         <thead>
@@ -14,13 +14,13 @@
             </tr>
         </thead>
         <tbody>
-        {% for fotw in fotws %}
+        {% for tag in tags %}
             <tr>
-                <td>{{ fotw.id }}</td>
-                <td>{{ fotw.name }}</td>
+                <td>{{ tag.id }}</td>
+                <td>{{ tag.name }}</td>
                 <td>
-                    <a href="{{ path('fotw_show', {'id': fotw.id}) }}">show</a>
-                    <a href="{{ path('fotw_edit', {'id': fotw.id}) }}">edit</a>
+                    <a href="{{ path('tag_show', {'id': tag.id}) }}">show</a>
+                    <a href="{{ path('tag_edit', {'id': tag.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -31,5 +31,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('fotw_new') }}">Create new</a>
+    <a href="{{ path('tag_new') }}">Create new</a>
 {% endblock %}
