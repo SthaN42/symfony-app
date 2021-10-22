@@ -2,8 +2,8 @@
 
 {% block title %}Tag{% endblock %}
 
-{% block body %}
-    <h1>Tag</h1>
+{% block content %}
+    <h1 class="title">Tag</h1>
 
     <table class="table">
         <tbody>
@@ -14,6 +14,14 @@
             <tr>
                 <th>Name</th>
                 <td>{{ tag.name }}</td>
+            </tr>
+            <tr>
+                <th>Videos</th>
+                {% for video in videos %}
+                    <td>{{ video.title }}</td>                    
+                {% else %}
+                    <td>No videos with this tag</td>
+                {% endfor %}
             </tr>
         </tbody>
     </table>

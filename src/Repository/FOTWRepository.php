@@ -36,15 +36,15 @@ class FotwRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Fotw
+    public function findLatest(): ?Fotw
     {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
-            ->setParameter('val', $value)
+        return $this->createQueryBuilder('fotw')
+            ->select('fotw')
+            ->innerjoin('App\Entity\Article', 'a', 'WITH', 'fotw.article = a.id')
+            ->orderBy('a.date', 'DESC')
+            ->setMaxResults(1)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-    */
 }

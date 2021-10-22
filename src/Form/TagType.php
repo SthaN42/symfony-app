@@ -16,16 +16,16 @@ class TagType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('videos', EntityType::class, [
-                'class' => Video::class,
-                'choice_label' => 'title',
-                'multiple' => true,
-            ])
-            ->add('articles', EntityType::class, [
-                'class' => Article::class,
-                'choice_label' => 'title',
-                'multiple' => true,
-            ])
+            // ->add('videos', EntityType::class, [
+            //     'class' => Video::class,
+            //     'choice_label' => 'title',
+            //     'multiple' => true,
+            // ])
+            // ->add('articles', EntityType::class, [
+            //     'class' => Article::class,
+            //     'choice_label' => 'title',
+            //     'multiple' => true,
+            // ])
         ;
     }
 

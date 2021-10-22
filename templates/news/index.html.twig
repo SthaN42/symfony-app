@@ -19,6 +19,9 @@
                 <p>{{ newsElement.title }}</p>
             </div>
             <div class="news-content">
+                <div class="news-date">
+                    <span>{{ newsElement.date ? newsElement.date|date('m-d-Y') : '' }}</span>
+                </div>
                 {% if is_granted('ROLE_ADMIN') %}
                 <a href="{{ path('news_edit', {'id': newsElement.id}) }}" class="link">Edit</a>
                 {% endif %}

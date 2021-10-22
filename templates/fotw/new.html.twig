@@ -2,10 +2,10 @@
 
 {% block title %}New Fotw{% endblock %}
 
-{% block body %}
-    <h1>Create new Fotw</h1>
+{% block content %}
+    <h1 class="title">Create new Fotw</h1>
 
     {{ include('fotw/_form.html.twig') }}
 
-    <a href="{{ path('fotw_index') }}">back to list</a>
+    <a href="{{ path('fotw_index') }}" class="btn clr-white">back to list</a>
 {% endblock %}

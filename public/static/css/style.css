@@ -27,8 +27,11 @@ header {
   align-items: center;
   justify-content: space-between;
 }
-header .logo {
+header .logo-wrapper {
   width: 33%;
+}
+header .logo {
+  width: 100%;
 }
 
 .user {
@@ -177,6 +180,10 @@ footer {
   place-items: center;
 }
 
+.news-date span {
+  font-style: italic;
+}
+
 .news a {
   text-decoration: none;
   display: block;
@@ -226,8 +233,8 @@ main > form > * > * {
   background-color: var(--clr-red-600);
 }
 
-.bg-red:hover,
-.btn:focus-visible {
+.btn.bg-red:hover,
+.btn.bg-red:focus-visible {
   background-color: var(--clr-red-400);
 }
 

@@ -19,6 +19,14 @@
                 <th>Title</th>
                 <td>{{ video.title }}</td>
             </tr>
+            <tr>
+                <th>Tags</th>
+                {% for tag in tags %}
+                <td>{{ tag.name }}</td>
+                {% else %}
+                <td>No tag</td>
+                {% endfor %}
+            </tr>
         </tbody>
     </table>
 

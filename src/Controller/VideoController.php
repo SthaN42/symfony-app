@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Tag;
 use App\Entity\Video;
 use App\Form\VideoType;
 use App\Repository\VideoRepository;
@@ -55,6 +56,7 @@ class VideoController extends AbstractController
     {
         return $this->render('video/show.html.twig', [
             'video' => $video,
+            'tags' => $video->getTags(),
         ]);
     }
 

@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Tag;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
+use App\Repository\TagRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,7 +30,7 @@ class ArticleController extends AbstractController
     /**
      * @Route("/new", name="article_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, TagRepository $tagRepository): Response
     {
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
@@ -36,6 +38,21 @@ class ArticleController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+
+            $tags = $form->get('tags')->getData();
+            $tags = explode(';', $tags);
+            foreach ($tags as $tag) {
+                $tag = trim($tag);
+                $entityTag = $tagRepository->findBy(['name' => $tag]);
+                if (!isset($entityTag[0])) {
+                    $entityTag[0] = new Tag();
+                    $entityTag[0]->setName($tag);
+                    $entityManager->persist($entityTag[0]);
+                }
+                $article->addTag($entityTag[0]);
+                // $entityManager->flush();
+            }
+
             $entityManager->persist($article);
             $entityManager->flush();
 
@@ -53,12 +70,12 @@ class ArticleController extends AbstractController
      */
     public function show(Article $article): Response
     {
-        $ytUrl = NULL;
+        $ytUrl = ["", ""];
         if ($article->getVideos()[0]) {
             $url = $article->getVideos()[0]->getUrl();
             $ytUrl = explode('=', $url, 2);
         }
-            
+
         return $this->render('article/show.html.twig', [
             'article' => $article,
             'ytUrl' => $ytUrl[1],
@@ -90,7 +107,7 @@ class ArticleController extends AbstractController
      */
     public function delete(Request $request, Article $article): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $article->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($article);
             $entityManager->flush();

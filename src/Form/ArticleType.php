@@ -3,9 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Article;
+use App\Entity\Tag;
 use App\Entity\Video;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -21,8 +23,15 @@ class ArticleType extends AbstractType
                 'class' => Video::class,
                 'choice_label' => 'title',
                 'multiple' => true,
+                'required' => false,
             ])
-            ->add('tags')
+            ->add('tags', TextType::class, [
+                'required' => false,
+                'mapped' => false,
+                'attr' => [
+                    'placeholder' => 'Place a ; between tags',
+                ]
+            ])
         ;
     }
 

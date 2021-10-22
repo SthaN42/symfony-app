@@ -21,7 +21,9 @@
 <body>
     <header>
         {% block header %}
-        <img src="{{ asset('static/img/Satisfactory_logo.png') }}" alt="Logo" class="logo">
+        <a href="https://www.satisfactorygame.com/" class="logo-wrapper" target="_blank">
+            <img src="{{ asset('static/img/Satisfactory_logo.png') }}" alt="Logo" class="logo">
+        </a>
 
         {% if app.user %}
         <div class="user">

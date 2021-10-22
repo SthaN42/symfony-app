@@ -35,7 +35,7 @@ class Video
     private $articles;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Tag::class, mappedBy="videos")
+     * @ORM\ManyToMany(targetEntity=Tag::class, mappedBy="videos", cascade={"persist"})
      */
     private $tags;
 

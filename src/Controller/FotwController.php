@@ -10,13 +10,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/fotw")
- */
 class FotwController extends AbstractController
 {
     /**
-     * @Route("/", name="fotw_index", methods={"GET"})
+     * @Route("/admin/fotw", name="fotw_index", methods={"GET"})
      */
     public function index(FotwRepository $fotwRepository): Response
     {
@@ -26,7 +23,7 @@ class FotwController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="fotw_new", methods={"GET","POST"})
+     * @Route("/admin/fotw/new", name="fotw_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -49,17 +46,27 @@ class FotwController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="fotw_show", methods={"GET"})
+     * @Route("/fotw/show", name="fotw_show", methods={"GET"})
      */
-    public function show(Fotw $fotw): Response
+    public function show(FotwRepository $fotwRepository): Response
     {
+        $fotw = $fotwRepository->findLatest();
+        $article = $fotw->getArticle();
+        $ytUrl = ["", ""];
+
+        if ($article->getVideos()[0]) {
+            $url = $article->getVideos()[0]->getUrl();
+            $ytUrl = explode('=', $url, 2);
+        }
+
         return $this->render('fotw/show.html.twig', [
             'fotw' => $fotw,
+            'ytUrl' => $ytUrl[1],
         ]);
     }
 
     /**
-     * @Route("/{id}/edit", name="fotw_edit", methods={"GET","POST"})
+     * @Route("/admin/fotw/{id}/edit", name="fotw_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Fotw $fotw): Response
     {
@@ -79,7 +86,7 @@ class FotwController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="fotw_delete", methods={"POST"})
+     * @Route("/admin/fotw/{id}", name="fotw_delete", methods={"POST"})
      */
     public function delete(Request $request, Fotw $fotw): Response
     {
