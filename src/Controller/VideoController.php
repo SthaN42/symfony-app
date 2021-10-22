@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Tag;
 use App\Entity\Video;
 use App\Form\VideoType;
+use App\Repository\TagRepository;
 use App\Repository\VideoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/video")
+ * @Route("/admin/video")
  */
 class VideoController extends AbstractController
 {
@@ -29,7 +30,7 @@ class VideoController extends AbstractController
     /**
      * @Route("/new", name="video_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, TagRepository $tagRepository): Response
     {
         $video = new Video();
         $form = $this->createForm(VideoType::class, $video);
@@ -37,6 +38,20 @@ class VideoController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+
+            $tags = $form->get('tags')->getData();
+            $tags = explode(';', $tags);
+            foreach ($tags as $tag) {
+                $tag = trim($tag);
+                $entityTag = $tagRepository->findBy(['name' => $tag]);
+                if (!isset($entityTag[0])) {
+                    $entityTag[0] = new Tag();
+                    $entityTag[0]->setName($tag);
+                    $entityManager->persist($entityTag[0]);
+                }
+                $video->addTag($entityTag[0]);
+            }
+
             $entityManager->persist($video);
             $entityManager->flush();
 

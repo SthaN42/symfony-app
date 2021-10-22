@@ -149,14 +149,12 @@ footer {
 }
 
 .news-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 50% 50%;
 }
 
 .news {
-  width: fit-content;
-  margin: 1rem 2rem;
+  margin: 1rem;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
   color: var(--clr-grey-300);

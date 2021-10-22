@@ -50,7 +50,6 @@ class ArticleController extends AbstractController
                     $entityManager->persist($entityTag[0]);
                 }
                 $article->addTag($entityTag[0]);
-                // $entityManager->flush();
             }
 
             $entityManager->persist($article);
