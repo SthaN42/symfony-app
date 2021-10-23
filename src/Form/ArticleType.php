@@ -9,6 +9,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class ArticleType extends AbstractType
 {
@@ -17,7 +18,7 @@ class ArticleType extends AbstractType
         $builder
             ->add('title')
             ->add('date')
-            ->add('content')
+            ->add('content', CKEditorType::class)
             ->add('videos', EntityType::class, [
                 'class' => Video::class,
                 'choice_label' => 'title',
