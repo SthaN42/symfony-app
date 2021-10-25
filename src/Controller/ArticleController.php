@@ -78,6 +78,7 @@ class ArticleController extends AbstractController
         return $this->render('article/show.html.twig', [
             'article' => $article,
             'ytUrl' => $ytUrl[1],
+            'tags' => $article->getTags(),
         ]);
     }
 

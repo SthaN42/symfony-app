@@ -9,13 +9,24 @@
         <h1 class="title">{{ article.title }}</h1>
     </div>
 
+    <div class="tags">
+        {% for tag in tags %}
+        <span class="tag clr-white">{{ tag.name }}</span>
+        {% else %}
+        <span>No tags</span>
+        {% endfor %}
+    </div>
+    <br>
+
     {% if ytUrl != NULL %}
     <div id="yt-iframe-wrapper">
         <iframe width="100%" height="100%" src="https://www.youtube.com/embed/{{ ytUrl }}" frameborder="0"></iframe>
     </div>
     {% endif %}
 
-    <div class="article-content">{{ article.content }}</div>
+    <div class="article-content">
+        {{ article.content }}
+    </div>
 </article>
 
 <div class="actions">

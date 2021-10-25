@@ -62,6 +62,7 @@ class FotwController extends AbstractController
         return $this->render('fotw/show.html.twig', [
             'fotw' => $fotw,
             'ytUrl' => $ytUrl[1],
+            'tags' => $article->getTags(),
         ]);
     }
 

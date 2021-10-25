@@ -251,3 +251,18 @@ main > form > * > * {
 article .article-content {
   margin: 2em;
 }
+
+.tags {
+  margin: 1rem 0;
+}
+
+.tags::before {
+  content: 'Tags : ';
+}
+
+.tag {
+  background-color: var(--clr-orange-400);
+  margin: 0 .15em;
+  padding: .35em .65em;
+  border-radius: 1em;
+}

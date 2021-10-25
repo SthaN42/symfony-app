@@ -9,6 +9,15 @@
             <p class="date"><span>{{ fotw.article.date ? fotw.article.date|date('Y-m-d') : '' }}</span></p>
             <h1 class="title">Factory Of The Week : {{ fotw.article.title }}</h1>
         </div>
+
+        <div class="tags">
+            {% for tag in tags %}
+            <span class="tag clr-white">{{ tag.name }}</span>
+            {% else %}
+            <span>No tags</span>
+            {% endfor %}
+        </div>
+        <br>
     
         {% if ytUrl != NULL %}
         <div id="yt-iframe-wrapper">
@@ -16,7 +25,9 @@
         </div>
         {% endif %}
     
-        <p class="article-content">{{ fotw.article.content }}</p>
+        <p class="article-content">
+            {{ fotw.article.content }}
+        </p>
     </article>
 
     <div class="actions">
